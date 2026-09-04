@@ -1,35 +1,28 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { Redirect, Tabs } from 'expo-router';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useAppTheme } from '@/contexts/theme-context';
+import { useAuth } from '@/contexts/auth-context';
+
+const iconNames = { index: 'home', transactions: 'swap-horizontal', analytics: 'bar-chart', profile: 'person' } as const;
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+  const { colors } = useAppTheme();
+  const { user, isBootstrapping } = useAuth();
+  if (!isBootstrapping && !user) return <Redirect href="/(auth)/login" />;
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+    <Tabs screenOptions={({ route }) => ({
+      headerShown: false,
+      tabBarActiveTintColor: colors.tabIconSelected,
+      tabBarInactiveTintColor: colors.tabIconDefault,
+      tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border, height: 66, paddingTop: 6, paddingBottom: 8 },
+      tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
+      tabBarIcon: ({ color, size, focused }) => <Ionicons name={focused ? iconNames[route.name as keyof typeof iconNames] : `${iconNames[route.name as keyof typeof iconNames]}-outline` as keyof typeof Ionicons.glyphMap} color={color} size={size} />,
+    })}>
+      <Tabs.Screen name="index" options={{ title: 'Home' }} />
+      <Tabs.Screen name="transactions" options={{ title: 'Transactions' }} />
+      <Tabs.Screen name="analytics" options={{ title: 'Analytics' }} />
+      <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
     </Tabs>
   );
 }
