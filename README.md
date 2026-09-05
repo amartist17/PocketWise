@@ -2,6 +2,12 @@
 
 A polished full-stack mobile expense tracker built to demonstrate practical React Native, Expo Router, TypeScript, Express, MongoDB, and JWT authentication.
 
+## Live deployment
+
+- Web app: https://pocketwise-app-seven.vercel.app
+- API health: https://pocketwise-api-six.vercel.app/api/health
+- Hosting: Vercel with automatic deployments from `main`
+
 ## Features
 
 - Register, sign in, persisted sessions, protected routes, and secure token storage
