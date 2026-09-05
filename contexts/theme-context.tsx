@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { useColorScheme } from 'react-native';
+import { Platform, useColorScheme } from 'react-native';
 
 import { Colors, ThemeColors } from '@/constants/theme';
 
@@ -19,11 +19,12 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 export function AppThemeProvider({ children }: PropsWithChildren) {
   const systemScheme = useColorScheme();
   const [preference, setPreferenceState] = useState<ThemePreference>('system');
+  const [hasHydrated, setHasHydrated] = useState(Platform.OS !== 'web');
 
   useEffect(() => {
     AsyncStorage.getItem(STORAGE_KEY).then((value) => {
       if (value === 'light' || value === 'dark' || value === 'system') setPreferenceState(value);
-    });
+    }).finally(() => setHasHydrated(true));
   }, []);
 
   const setPreference = (value: ThemePreference) => {
@@ -31,7 +32,7 @@ export function AppThemeProvider({ children }: PropsWithChildren) {
     void AsyncStorage.setItem(STORAGE_KEY, value);
   };
 
-  const isDark = preference === 'system' ? systemScheme === 'dark' : preference === 'dark';
+  const isDark = hasHydrated && (preference === 'system' ? systemScheme === 'dark' : preference === 'dark');
   const value = useMemo(
     () => ({ colors: isDark ? Colors.dark : Colors.light, isDark, preference, setPreference }),
     [isDark, preference],
