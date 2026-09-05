@@ -4,7 +4,7 @@ import { Redirect, Tabs } from 'expo-router';
 import { useAppTheme } from '@/contexts/theme-context';
 import { useAuth } from '@/contexts/auth-context';
 
-const iconNames = { index: 'home', transactions: 'swap-horizontal', analytics: 'bar-chart', profile: 'person' } as const;
+const iconNames = { index: 'home', transactions: 'swap-horizontal', analytics: 'bar-chart', tools: 'grid', profile: 'person' } as const;
 
 export default function TabLayout() {
   const { colors } = useAppTheme();
@@ -22,6 +22,7 @@ export default function TabLayout() {
       <Tabs.Screen name="index" options={{ title: 'Home' }} />
       <Tabs.Screen name="transactions" options={{ title: 'Transactions' }} />
       <Tabs.Screen name="analytics" options={{ title: 'Analytics' }} />
+      <Tabs.Screen name="tools" options={{ title: 'Tools' }} />
       <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
     </Tabs>
   );

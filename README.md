@@ -11,6 +11,9 @@ A polished full-stack mobile expense tracker built to demonstrate practical Reac
 - System, light, and dark appearance preferences
 - Form validation, loading, empty, API error, and network failure states
 - User-scoped backend authorization and production-minded HTTP protections
+- Equal expense splitting with exact paise allocation, participant names, and the native share sheet (including WhatsApp when installed)
+- Money Tools destination with a privacy-focused QR Assist “Coming soon” preview
+- Reduced-motion-aware button feedback and refreshed dashboard visuals
 
 ## Architecture
 
@@ -25,7 +28,7 @@ The mobile client stores its bearer token in SecureStore and attaches it through
 
 ## Tech stack
 
-**Mobile:** React Native 0.86, Expo SDK 57, Expo Router 57, React 19.2, TypeScript, Axios, SecureStore, AsyncStorage
+**Mobile:** React Native 0.86, Expo SDK 57, Expo Router 57, React 19.2, TypeScript, Axios, SecureStore, Linear Gradient, AsyncStorage
 
 **Backend:** Node.js, Express 5, TypeScript, MongoDB, Mongoose, Zod, JWT, bcrypt, Helmet
 **Quality:** ESLint, strict TypeScript, Node test runner, Metro Android export verification
@@ -137,11 +140,17 @@ Nothing in this repository publishes automatically.
 
 ## Screenshots
 
-Add final screenshots here after testing the flows on a physical Android phone:
+Compact 430 × 932 previews generated from the Expo web renderer with representative showcase data. Native store captures should be regenerated on the target Android device before publishing.
 
-| Login | Dashboard | Transactions | Analytics |
-| --- | --- | --- | --- |
-| _Coming soon_ | _Coming soon_ | _Coming soon_ | _Coming soon_ |
+With the API and Expo web preview running, regenerate them with `npm run capture:screenshots`. Set `POCKETWISE_PREVIEW_URL` when Expo is not using port 8081. The script refreshes the dedicated showcase account before capture; never point it at a production API.
+
+| Dashboard | Analytics |
+| --- | --- |
+| ![PocketWise dashboard](./docs/screenshots/home-light.png) | ![PocketWise analytics](./docs/screenshots/analytics-light.png) |
+
+| Money tools | Split an expense |
+| --- | --- |
+| ![PocketWise money tools](./docs/screenshots/tools-dark.png) | ![PocketWise expense split](./docs/screenshots/split-dark.png) |
 
 ## What I learned
 

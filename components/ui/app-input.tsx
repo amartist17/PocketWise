@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleProp, StyleSheet, Text, TextInput, View, ViewStyle } from 'react-native';
 
 import { Radius, Spacing, Typography } from '@/constants/theme';
 import { useAppTheme } from '@/contexts/theme-context';
@@ -7,12 +7,13 @@ import { useAppTheme } from '@/contexts/theme-context';
 interface AppInputProps extends ComponentProps<typeof TextInput> {
   label: string;
   error?: string;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
-export function AppInput({ label, error, style, ...props }: AppInputProps) {
+export function AppInput({ label, error, style, containerStyle, ...props }: AppInputProps) {
   const { colors } = useAppTheme();
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, containerStyle]}>
       <Text style={[styles.label, { color: colors.text }]}>{label}</Text>
       <TextInput
         placeholderTextColor={colors.textMuted}

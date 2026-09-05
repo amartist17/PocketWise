@@ -4,6 +4,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet, Text, View } from 'react-na
 
 import { AppButton } from '@/components/ui/app-button';
 import { AppInput } from '@/components/ui/app-input';
+import { BrandLogo } from '@/components/ui/brand-logo';
 import { Screen } from '@/components/ui/screen';
 import { Spacing, Typography } from '@/constants/theme';
 import { useAppTheme } from '@/contexts/theme-context';
@@ -25,6 +26,7 @@ export default function RegisterScreen() {
   return (
     <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Screen scroll contentStyle={styles.content}>
+        <BrandLogo />
         <View style={styles.heading}><Text style={[styles.title, { color: colors.text }]}>Create your account</Text><Text style={[styles.subtitle, { color: colors.textMuted }]}>Start building a calmer relationship with your money.</Text></View>
         <View style={styles.form}>
           <AppInput label="Name" value={name} onChangeText={setName} autoComplete="name" />

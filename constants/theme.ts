@@ -12,7 +12,15 @@ export const Colors = {
     textMuted: '#667085',
     border: '#E4E7EC',
     primary: '#236B5C',
+    primaryStrong: '#12483D',
     primarySoft: '#DDF2EC',
+    onPrimary: '#FFFFFF',
+    heroStart: '#12483D',
+    heroEnd: '#236B5C',
+    onHero: '#FFFFFF',
+    accent: '#F2B84B',
+    accentSoft: '#FCEBC7',
+    onAccentSoft: '#513500',
     income: '#168F67',
     expense: '#D94C4C',
     warning: '#D58A1F',
@@ -28,7 +36,15 @@ export const Colors = {
     textMuted: '#A8B6B1',
     border: '#2B3A36',
     primary: '#64C8AD',
+    primaryStrong: '#A5E4D3',
     primarySoft: '#193D34',
+    onPrimary: '#06211A',
+    heroStart: '#102F28',
+    heroEnd: '#1C594B',
+    onHero: '#FFFFFF',
+    accent: '#F4C86A',
+    accentSoft: '#483A16',
+    onAccentSoft: '#FFE7A6',
     income: '#6DD6AA',
     expense: '#FF8585',
     warning: '#F2B95D',
@@ -40,7 +56,7 @@ export const Colors = {
 
 export type ThemeColors = (typeof Colors)['light'];
 
-export const Spacing = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 } as const;
+export const Spacing = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32, xxxl: 40 } as const;
 export const Radius = { sm: 10, md: 16, lg: 24, pill: 999 } as const;
 export const Typography = {
   hero: { fontSize: 34, lineHeight: 41, fontWeight: '700' as const },

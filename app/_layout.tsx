@@ -23,6 +23,7 @@ function Navigation() {
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="transaction-form" options={{ presentation: 'modal', title: 'Add transaction' }} />
+        <Stack.Screen name="split" options={{ title: 'Split an expense' }} />
       </Stack>
       <StatusBar style={isDark ? 'light' : 'dark'} />
     </ThemeProvider>
