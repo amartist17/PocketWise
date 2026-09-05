@@ -25,7 +25,7 @@ app.use(helmet());
 app.use(cors({ origin: env.CLIENT_ORIGIN === '*' ? true : env.CLIENT_ORIGIN }));
 app.use(express.json({ limit: '20kb' }));
 app.use('/api/auth', rateLimit({ windowMs: 15 * 60 * 1000, limit: 100, standardHeaders: 'draft-8', legacyHeaders: false }), authRouter);
-app.get('/api/health', (_request, response) => response.json({ status: 'ok', timestamp: new Date().toISOString() }));
+app.get('/api/health', (_request, response) => response.json({ service: 'pocketwise-api', status: 'ok', timestamp: new Date().toISOString() }));
 app.use('/api/transactions', requireAuth, transactionRouter);
 app.use(notFound);
 app.use(errorHandler);
