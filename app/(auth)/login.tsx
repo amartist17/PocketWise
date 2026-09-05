@@ -35,6 +35,7 @@ export default function LoginScreen() {
         <View style={styles.form}>
           <AppInput label="Email" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" autoComplete="email" />
           <AppInput label="Password" value={password} onChangeText={setPassword} secureTextEntry autoComplete="current-password" />
+          <Link href="/(auth)/forgot-password" style={{ color: colors.primary, fontWeight: '700', textAlign: 'right' }}>Forgot password?</Link>
           {error ? <Text style={[styles.error, { color: colors.expense }]}>{error}</Text> : null}
           <AppButton label="Sign in" onPress={submit} loading={loading} disabled={!email.trim() || !password} />
         </View>

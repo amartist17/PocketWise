@@ -11,6 +11,8 @@ A polished full-stack mobile expense tracker built to demonstrate practical Reac
 ## Features
 
 - Register, sign in, persisted sessions, protected routes, and secure token storage
+- Email-code password recovery, authenticated password changes, and permanent account deletion
+- In-app privacy policy, terms, data-retention, and support information
 - Balance, income, expense, recent-activity, and monthly overview dashboard
 - Create, edit, delete, search, filter, and pull-to-refresh transactions
 - Category spending and income-vs-expense analytics
@@ -111,7 +113,11 @@ Scan the QR code with Expo Go. Android Emulator uses `http://10.0.2.2:4000/api`;
 | GET | `/api/health` | No | Service health |
 | POST | `/api/auth/register` | No | Create account and token |
 | POST | `/api/auth/login` | No | Sign in and token |
+| POST | `/api/auth/forgot-password` | No | Request a time-limited reset code |
+| POST | `/api/auth/reset-password` | No | Reset password with a valid code |
 | GET | `/api/auth/me` | Bearer | Restore current user |
+| PATCH | `/api/auth/password` | Bearer | Change current password |
+| DELETE | `/api/auth/me` | Bearer | Permanently delete account and transactions |
 | GET/POST | `/api/transactions` | Bearer | List/create own transactions |
 | GET/PUT/DELETE | `/api/transactions/:id` | Bearer | Read/update/delete own transaction |
 
@@ -119,6 +125,7 @@ Scan the QR code with Expo Go. Android Emulator uses `http://10.0.2.2:4000/api`;
 
 ```bash
 npx tsc --noEmit
+npm test
 npm run lint
 cd backend
 npm run typecheck
@@ -133,7 +140,7 @@ npm run build
 - APK: directly installable Android package, useful for testers.
 - AAB: Play Store upload format; Google Play creates optimized APKs for devices.
 
-After installing EAS CLI and signing into Expo:
+The `preview` profile produces an installable APK connected to the production API. After signing into Expo:
 
 ```bash
 npx eas-cli login
@@ -142,7 +149,13 @@ npx eas-cli build --platform android --profile preview
 npx eas-cli build --platform android --profile production
 ```
 
-Nothing in this repository publishes automatically.
+Vercel deploys the web app and API automatically from `main`. EAS builds remain an explicit release action.
+
+## Production configuration
+
+The web app is built with `EXPO_PUBLIC_API_URL`. The API requires `MONGODB_URI`, `JWT_SECRET`, `CLIENT_ORIGIN`, and `NODE_ENV=production`. Password recovery additionally requires `RESEND_API_KEY` and a verified `EMAIL_FROM` sender. Secrets belong in Vercel environment settings and must never be committed.
+
+The public legal page is available at https://pocketwise-app-seven.vercel.app/legal. Users can delete their account and associated transactions from Profile.
 
 ## Screenshots
 

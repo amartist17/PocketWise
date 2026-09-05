@@ -12,6 +12,7 @@ interface AuthContextValue {
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  deleteAccount: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -46,6 +47,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     login: (email, password) => authenticate(() => authService.login({ email, password })),
     register: (name, email, password) => authenticate(() => authService.register({ name, email, password })),
     logout: async () => { await tokenStorage.remove(); setUser(null); },
+    deleteAccount: async () => { await authService.deleteAccount(); await tokenStorage.remove(); setUser(null); },
   }), [user, isBootstrapping, error]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -3,6 +3,7 @@
     "name": "PocketWise",
     "slug": "finance-tracker",
     "description": "A privacy-minded personal finance tracker with clear analytics and expense splitting.",
+    "githubUrl": "https://github.com/amartist17/PocketWise",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -13,6 +14,7 @@
     },
     "android": {
       "package": "com.pocketwise.expensetracker",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#F5F7FA",
         "foregroundImage": "./assets/images/android-icon-foreground.png"

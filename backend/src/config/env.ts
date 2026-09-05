@@ -7,6 +7,8 @@ const schema = z.object({
   JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
   JWT_EXPIRES_IN: z.string().default('7d'),
   CLIENT_ORIGIN: z.string().default('*'),
+  RESEND_API_KEY: z.string().min(1).optional(),
+  EMAIL_FROM: z.string().default('PocketWise <onboarding@resend.dev>'),
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
 });
 

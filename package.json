@@ -14,6 +14,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "capture:screenshots": "node scripts/capture-screenshots.mjs",
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test utils/*.test.mjs",
     "lint": "expo lint"
   },
   "dependencies": {
