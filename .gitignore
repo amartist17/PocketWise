@@ -43,3 +43,4 @@ backend/.env
 /android
 
 .vercel/
+releases/*.apk

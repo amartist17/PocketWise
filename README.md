@@ -140,7 +140,17 @@ npm run build
 - APK: directly installable Android package, useful for testers.
 - AAB: Play Store upload format; Google Play creates optimized APKs for devices.
 
-The `preview` profile produces an installable APK connected to the production API. After signing into Expo:
+### Install PocketWise 1.0.0
+
+- Signed Android APK: https://expo.dev/accounts/amartist17/projects/finance-tracker/builds/b344a7e2-67f4-439d-b2e2-880dc4f25c91
+- Application ID: `com.pocketwise.expensetracker`
+- Version code: `1`
+- Size: `102.81 MB`
+- SHA-256: `8A0BAC2B9294720F82CB8C6385B27AE6FEC9DA98607913B291B68E81AE3A7C7A`
+
+The downloaded artifact is stored locally at `releases/PocketWise-1.0.0.apk`. APK binaries are intentionally ignored by Git; the Expo build page is the canonical installer link.
+
+The `preview` profile produces an installable APK connected to the production API. To create a later build:
 
 ```bash
 npx eas-cli login
